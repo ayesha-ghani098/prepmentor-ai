@@ -21,6 +21,37 @@ import {
   questionsHeader,
   questionsTitle,
   loadingContainer,
+  answerPage,
+  answerContainer,
+  answerHeader,
+  answerTitle,
+  answerGrid,
+  answerQuestionCard,
+  answerQuestionTitle,
+  answerQuestionText,
+  answerInputField,
+  answerSubmitButton,
+  answerErrorText,
+  answerFeedbackCard,
+  answerFeedbackTitle,
+  answerScoreSection,
+  answerScoreHeader,
+  answerScoreLabel,
+  answerScoreProgress,
+  answerDivider,
+  answerBreakdownTitle,
+  answerBreakdownItem,
+  answerBreakdownHeader,
+  answerBreakdownLabel,
+  answerBreakdownValue,
+  answerBreakdownProgress,
+  answerAiSection,
+  answerAiFeedback,
+  answerAiText,
+  answerReattemptButton,
+  scoreColorSuccess,
+  scoreColorWarning,
+  scoreColorError,
 } from "../styles/tailwindStyles";
 
 const Answer: React.FC = () => {
@@ -119,9 +150,9 @@ const Answer: React.FC = () => {
   };
 
   const getScoreColor = (score: number) => {
-    if (score >= 8) return "success";
-    if (score >= 6) return "warning";
-    return "error";
+    if (score >= 8) return scoreColorSuccess;
+    if (score >= 6) return scoreColorWarning;
+    return scoreColorError;
   };
 
   const getScoreLabel = (score: number) => {
@@ -160,36 +191,45 @@ const Answer: React.FC = () => {
   }
 
   return (
-    <Box className={questionsPage}>
-      <Box className={questionsContainer}>
+    <Box className={answerPage}>
+      <Box className={answerContainer}>
         {/* Header */}
-        <Box className={questionsHeader}>
+        <Box className={answerHeader}>
           <Button
             startIcon={<ArrowBackIcon />}
             onClick={() => navigate(-1)}
-            sx={{ mb: 2 }}
+            sx={{
+              mb: 2,
+              borderRadius: "12px",
+              borderColor: "#6366f1",
+              color: "#6366f1",
+              "&:hover": {
+                borderColor: "#4f46e5",
+                backgroundColor: "rgba(99, 102, 241, 0.04)",
+              },
+            }}
           >
             Back to Questions
           </Button>
-          <Typography variant="h4" className={questionsTitle}>
+          <Typography variant="h4" className={answerTitle}>
             {answerResponse && !showReattempt
               ? "Answer Feedback"
               : "Answer Question"}
           </Typography>
         </Box>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className={answerGrid}>
           {/* Question and Answer Section */}
-          <Card>
+          <Card className={answerQuestionCard}>
             <CardContent>
-              <Typography variant="h6" gutterBottom>
+              <Typography variant="h6" className={answerQuestionTitle}>
                 Question
               </Typography>
-              <Typography variant="body1" sx={{ mb: 3 }}>
+              <Typography variant="body1" className={answerQuestionText}>
                 {getQuestionText()}
               </Typography>
 
-              <Typography variant="h6" gutterBottom>
+              <Typography variant="h6" className={answerQuestionTitle}>
                 Your Answer
               </Typography>
               <TextField
@@ -201,7 +241,19 @@ const Answer: React.FC = () => {
                 value={answerText}
                 onChange={(e) => setAnswerText(e.target.value)}
                 disabled={isSubmitting || (!!answerResponse && !showReattempt)}
-                sx={{ mb: 2 }}
+                className={answerInputField}
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    borderRadius: "12px",
+                    backgroundColor: "rgba(255, 255, 255, 0.8)",
+                    "&:hover": {
+                      backgroundColor: "rgba(255, 255, 255, 0.9)",
+                    },
+                    "&.Mui-focused": {
+                      backgroundColor: "rgba(255, 255, 255, 0.95)",
+                    },
+                  },
+                }}
               />
 
               {(!answerResponse || showReattempt) && (
@@ -209,14 +261,26 @@ const Answer: React.FC = () => {
                   variant="contained"
                   onClick={handleSubmit}
                   disabled={!answerText.trim() || isSubmitting}
-                  sx={{ mb: 2 }}
+                  className={answerSubmitButton}
+                  sx={{
+                    borderRadius: "12px",
+                    background:
+                      "linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)",
+                    "&:hover": {
+                      background:
+                        "linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)",
+                    },
+                    "&:disabled": {
+                      background: "rgba(156, 163, 175, 0.3)",
+                    },
+                  }}
                 >
                   {isSubmitting ? "Submitting..." : "Submit Answer"}
                 </Button>
               )}
 
               {error && (
-                <Typography color="error" sx={{ mt: 2 }}>
+                <Typography color="error" className={answerErrorText}>
                   {error}
                 </Typography>
               )}
@@ -225,122 +289,173 @@ const Answer: React.FC = () => {
 
           {/* Feedback Section */}
           {answerResponse && !showReattempt && (
-            <Card>
+            <Card className={answerFeedbackCard}>
               <CardContent>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant="h6" className={answerFeedbackTitle}>
                   Feedback & Analysis
                 </Typography>
 
                 {/* Overall Score */}
-                <Box sx={{ mb: 3 }}>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      mb: 1,
-                    }}
-                  >
-                    <Typography variant="subtitle1">Overall Score</Typography>
+                <Box className={answerScoreSection}>
+                  <Box className={answerScoreHeader}>
+                    <Typography
+                      variant="subtitle1"
+                      className={answerScoreLabel}
+                    >
+                      Overall Score
+                    </Typography>
                     <Chip
                       label={`${answerResponse.score}/10 - ${getScoreLabel(
                         answerResponse.score
                       )}`}
                       color={getScoreColor(answerResponse.score) as any}
+                      sx={{
+                        borderRadius: "12px",
+                        fontWeight: 600,
+                        fontSize: "0.875rem",
+                      }}
                     />
                   </Box>
                   <LinearProgress
                     variant="determinate"
                     value={answerResponse.score * 10}
                     color={getScoreColor(answerResponse.score) as any}
-                    sx={{ height: 8, borderRadius: 4 }}
+                    sx={{
+                      height: 10,
+                      borderRadius: 6,
+                      backgroundColor: "rgba(156, 163, 175, 0.2)",
+                      "& .MuiLinearProgress-bar": {
+                        borderRadius: 6,
+                      },
+                    }}
                   />
                 </Box>
 
-                <Divider sx={{ my: 2 }} />
+                <Divider className={answerDivider} />
 
                 {/* Detailed Scores */}
-                <Typography variant="subtitle2" gutterBottom>
+                <Typography
+                  variant="subtitle2"
+                  className={answerBreakdownTitle}
+                >
                   Detailed Breakdown
                 </Typography>
 
-                <Box sx={{ mb: 2 }}>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      mb: 1,
-                    }}
-                  >
-                    <Typography variant="body2">Correctness</Typography>
-                    <Typography variant="body2">
+                <Box className={answerBreakdownItem}>
+                  <Box className={answerBreakdownHeader}>
+                    <Typography
+                      variant="body2"
+                      className={answerBreakdownLabel}
+                    >
+                      Correctness
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      className={answerBreakdownValue}
+                    >
                       {answerResponse.correctness}/10
                     </Typography>
                   </Box>
                   <LinearProgress
                     variant="determinate"
                     value={answerResponse.correctness * 10}
-                    sx={{ height: 6, borderRadius: 3 }}
+                    sx={{
+                      height: 8,
+                      borderRadius: 4,
+                      backgroundColor: "rgba(156, 163, 175, 0.2)",
+                      "& .MuiLinearProgress-bar": {
+                        borderRadius: 4,
+                      },
+                    }}
                   />
                 </Box>
 
-                <Box sx={{ mb: 2 }}>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      mb: 1,
-                    }}
-                  >
-                    <Typography variant="body2">Completeness</Typography>
-                    <Typography variant="body2">
+                <Box className={answerBreakdownItem}>
+                  <Box className={answerBreakdownHeader}>
+                    <Typography
+                      variant="body2"
+                      className={answerBreakdownLabel}
+                    >
+                      Completeness
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      className={answerBreakdownValue}
+                    >
                       {answerResponse.completeness}/10
                     </Typography>
                   </Box>
                   <LinearProgress
                     variant="determinate"
                     value={answerResponse.completeness * 10}
-                    sx={{ height: 6, borderRadius: 3 }}
+                    sx={{
+                      height: 8,
+                      borderRadius: 4,
+                      backgroundColor: "rgba(156, 163, 175, 0.2)",
+                      "& .MuiLinearProgress-bar": {
+                        borderRadius: 4,
+                      },
+                    }}
                   />
                 </Box>
 
-                <Box sx={{ mb: 3 }}>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      mb: 1,
-                    }}
-                  >
-                    <Typography variant="body2">Clarity</Typography>
-                    <Typography variant="body2">
+                <Box className={answerBreakdownItem}>
+                  <Box className={answerBreakdownHeader}>
+                    <Typography
+                      variant="body2"
+                      className={answerBreakdownLabel}
+                    >
+                      Clarity
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      className={answerBreakdownValue}
+                    >
                       {answerResponse.clarity}/10
                     </Typography>
                   </Box>
                   <LinearProgress
                     variant="determinate"
                     value={answerResponse.clarity * 10}
-                    sx={{ height: 6, borderRadius: 3 }}
+                    sx={{
+                      height: 8,
+                      borderRadius: 4,
+                      backgroundColor: "rgba(156, 163, 175, 0.2)",
+                      "& .MuiLinearProgress-bar": {
+                        borderRadius: 4,
+                      },
+                    }}
                   />
                 </Box>
 
-                <Divider sx={{ my: 2 }} />
+                <Divider className={answerDivider} />
 
                 {/* AI Feedback */}
-                <Typography variant="subtitle2" gutterBottom>
+                <Typography variant="subtitle2" className={answerAiSection}>
                   AI Recommendations
                 </Typography>
-                <Paper
-                  variant="outlined"
-                  sx={{ p: 2, backgroundColor: "#f8f9fa", mb: 2 }}
-                >
-                  <Typography variant="body2">
+                <Paper variant="outlined" className={answerAiFeedback}>
+                  <Typography variant="body2" className={answerAiText}>
                     {answerResponse.feedback}
                   </Typography>
                 </Paper>
 
                 {/* Reattempt Button */}
-                <Button variant="outlined" onClick={handleReattempt} fullWidth>
+                <Button
+                  variant="outlined"
+                  onClick={handleReattempt}
+                  className={answerReattemptButton}
+                  sx={{
+                    borderRadius: "12px",
+                    borderColor: "#10b981",
+                    color: "#10b981",
+                    fontWeight: 600,
+                    "&:hover": {
+                      borderColor: "#059669",
+                      backgroundColor: "rgba(16, 185, 129, 0.04)",
+                    },
+                  }}
+                >
                   Try Again
                 </Button>
               </CardContent>

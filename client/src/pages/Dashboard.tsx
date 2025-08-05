@@ -20,6 +20,52 @@ import {
 import { useQuestions } from "../questions/QuestionContext";
 import { useAuth } from "../auth/useAuth";
 import { LowScoreQuestion } from "../questions/questionApi";
+import {
+  dashboardPage,
+  dashboardContainer,
+  dashboardWelcomeCard,
+  dashboardWelcomeContent,
+  dashboardWelcomeText,
+  dashboardWelcomeSubtext,
+  dashboardMetricsGrid,
+  dashboardMetricCard,
+  dashboardMetricContent,
+  dashboardMetricNumber,
+  dashboardMetricLabel,
+  dashboardMetricIcon,
+  dashboardLowScoreSection,
+  dashboardLowScoreHeader,
+  dashboardLowScoreTitle,
+  dashboardLowScoreList,
+  dashboardLowScoreCard,
+  dashboardLowScoreCardContent,
+  dashboardLowScoreQuestionText,
+  dashboardLowScoreMeta,
+  dashboardLowScoreDate,
+  dashboardLowScoreEmpty,
+  dashboardLowScoreEmptyIcon,
+  dashboardLowScoreEmptyTitle,
+  dashboardLowScoreEmptySubtext,
+  dashboardQuickActions,
+  dashboardQuickActionsTitle,
+  dashboardQuickActionsGrid,
+  dashboardQuickActionCard,
+  dashboardQuickActionCardPurple,
+  dashboardQuickActionCardGreen,
+  dashboardQuickActionContent,
+  dashboardQuickActionIcon,
+  dashboardQuickActionIconPurple,
+  dashboardQuickActionIconGreen,
+  dashboardQuickActionTitle,
+  dashboardQuickActionTitlePurple,
+  dashboardQuickActionTitleGreen,
+  dashboardQuickActionSubtext,
+  dashboardQuickActionSubtextPurple,
+  dashboardQuickActionSubtextGreen,
+  performanceColorGreen,
+  performanceColorYellow,
+  performanceColorRed,
+} from "../styles/tailwindStyles";
 
 const Dashboard: React.FC = () => {
   const { user } = useAuth();
@@ -39,9 +85,9 @@ const Dashboard: React.FC = () => {
   };
 
   const getPerformanceColor = (score: number) => {
-    if (score >= 8) return "text-green-600";
-    if (score >= 6) return "text-yellow-600";
-    return "text-red-600";
+    if (score >= 8) return performanceColorGreen;
+    if (score >= 6) return performanceColorYellow;
+    return performanceColorRed;
   };
 
   const getScoreColor = (score: number) => {
@@ -59,20 +105,17 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <Box className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 p-6">
-      <Box className="max-w-7xl mx-auto">
+    <Box className={dashboardPage}>
+      <Box className={dashboardContainer}>
         {/* Welcome Section */}
-        <Card className="mb-8">
+        <Card className={dashboardWelcomeCard}>
           <CardContent>
-            <Box className="flex justify-between items-center">
+            <Box className={dashboardWelcomeContent}>
               <Box>
-                <Typography
-                  variant="h4"
-                  className="font-bold text-gray-800 mb-2"
-                >
+                <Typography variant="h4" className={dashboardWelcomeText}>
                   Welcome back, {user?.email?.split("@")[0] || "Alex"}! 👋
                 </Typography>
-                <Typography variant="body1" className="text-gray-600">
+                <Typography variant="body1" className={dashboardWelcomeSubtext}>
                   Ready to continue your interview preparation journey?
                 </Typography>
               </Box>
@@ -81,6 +124,15 @@ const Dashboard: React.FC = () => {
                 startIcon={<RefreshIcon />}
                 onClick={handleRefreshStats}
                 disabled={state.loading}
+                sx={{
+                  borderRadius: "12px",
+                  borderColor: "#6366f1",
+                  color: "#6366f1",
+                  "&:hover": {
+                    borderColor: "#4f46e5",
+                    backgroundColor: "rgba(99, 102, 241, 0.04)",
+                  },
+                }}
               >
                 Refresh
               </Button>
@@ -89,45 +141,45 @@ const Dashboard: React.FC = () => {
         </Card>
 
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <Card className="bg-gradient-to-r from-purple-600 to-blue-600 text-white">
+        <div className={dashboardMetricsGrid}>
+          <Card className={dashboardMetricCard}>
             <CardContent>
-              <Box className="flex items-center justify-between">
+              <Box className={dashboardMetricContent}>
                 <Box>
-                  <Typography variant="h3" className="font-bold mb-2">
+                  <Typography variant="h3" className={dashboardMetricNumber}>
                     {state.dashboardStats?.questionsAnsweredCount || 0}
                   </Typography>
-                  <Typography variant="h6" className="opacity-90">
+                  <Typography variant="h6" className={dashboardMetricLabel}>
                     Questions Answered
                   </Typography>
                 </Box>
-                <QuestionAnswerIcon className="text-4xl opacity-80" />
+                <QuestionAnswerIcon className={dashboardMetricIcon} />
               </Box>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-r from-purple-600 to-blue-600 text-white">
+          <Card className={dashboardMetricCard}>
             <CardContent>
-              <Box className="flex items-center justify-between">
+              <Box className={dashboardMetricContent}>
                 <Box>
-                  <Typography variant="h3" className="font-bold mb-2">
+                  <Typography variant="h3" className={dashboardMetricNumber}>
                     {state.dashboardStats?.averageScore?.toFixed(1) || "0.0"}
                   </Typography>
-                  <Typography variant="h6" className="opacity-90">
+                  <Typography variant="h6" className={dashboardMetricLabel}>
                     Average Score
                   </Typography>
                 </Box>
-                <AssessmentIcon className="text-4xl opacity-80" />
+                <AssessmentIcon className={dashboardMetricIcon} />
               </Box>
             </CardContent>
           </Card>
         </div>
 
         {/* Low Score Questions Section */}
-        <Card className="mb-8">
+        <Card className={dashboardLowScoreSection}>
           <CardContent>
-            <Box className="flex items-center justify-between mb-6">
-              <Typography variant="h5" className="font-bold text-gray-800">
+            <Box className={dashboardLowScoreHeader}>
+              <Typography variant="h5" className={dashboardLowScoreTitle}>
                 Questions Needing Improvement
               </Typography>
               <Chip
@@ -137,32 +189,38 @@ const Dashboard: React.FC = () => {
                 } questions`}
                 color="warning"
                 variant="outlined"
+                sx={{
+                  borderRadius: "12px",
+                  borderColor: "#f59e0b",
+                  color: "#f59e0b",
+                  fontWeight: 600,
+                }}
               />
             </Box>
 
             {state.dashboardStats?.lowScoreQuestions &&
             state.dashboardStats.lowScoreQuestions.length > 0 ? (
-              <div className="space-y-4">
+              <div className={dashboardLowScoreList}>
                 {state.dashboardStats.lowScoreQuestions.map(
                   (question: LowScoreQuestion) => (
                     <Card
                       key={question.questionId}
                       variant="outlined"
-                      className="hover:shadow-md transition-shadow"
+                      className={dashboardLowScoreCard}
                     >
                       <CardContent>
-                        <Box className="flex justify-between items-start">
+                        <Box className={dashboardLowScoreCardContent}>
                           <Box className="flex-1">
                             <Typography
                               variant="h6"
-                              className="font-semibold text-gray-800 mb-2"
+                              className={dashboardLowScoreQuestionText}
                             >
                               {question.questionText}
                             </Typography>
-                            <Box className="flex items-center gap-4 mb-3">
+                            <Box className={dashboardLowScoreMeta}>
                               <Typography
                                 variant="body2"
-                                className="text-gray-600"
+                                className={dashboardLowScoreDate}
                               >
                                 Submitted: {formatDate(question.submittedAt)}
                               </Typography>
@@ -170,13 +228,24 @@ const Dashboard: React.FC = () => {
                                 label={`Score: ${question.score}/10`}
                                 color={getScoreColor(question.score) as any}
                                 size="small"
+                                sx={{
+                                  borderRadius: "8px",
+                                  fontWeight: 600,
+                                }}
                               />
                             </Box>
                             <LinearProgress
                               variant="determinate"
                               value={question.score * 10}
                               color={getScoreColor(question.score) as any}
-                              sx={{ height: 6, borderRadius: 3 }}
+                              sx={{
+                                height: 8,
+                                borderRadius: 4,
+                                backgroundColor: "rgba(156, 163, 175, 0.2)",
+                                "& .MuiLinearProgress-bar": {
+                                  borderRadius: 4,
+                                },
+                              }}
                             />
                           </Box>
                           <Button
@@ -186,7 +255,16 @@ const Dashboard: React.FC = () => {
                               handleRetryQuestion(question.questionId)
                             }
                             startIcon={<RefreshIcon />}
-                            sx={{ ml: 2 }}
+                            sx={{
+                              ml: 2,
+                              borderRadius: "12px",
+                              background:
+                                "linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)",
+                              "&:hover": {
+                                background:
+                                  "linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)",
+                              },
+                            }}
                           >
                             Retry
                           </Button>
@@ -197,12 +275,18 @@ const Dashboard: React.FC = () => {
                 )}
               </div>
             ) : (
-              <Box className="text-center py-8">
-                <TrendingUpIcon className="text-4xl text-green-400 mb-4" />
-                <Typography variant="h6" className="text-gray-500 mb-2">
+              <Box className={dashboardLowScoreEmpty}>
+                <TrendingUpIcon className={dashboardLowScoreEmptyIcon} />
+                <Typography
+                  variant="h6"
+                  className={dashboardLowScoreEmptyTitle}
+                >
                   Great job! No low score questions
                 </Typography>
-                <Typography variant="body2" className="text-gray-400">
+                <Typography
+                  variant="body2"
+                  className={dashboardLowScoreEmptySubtext}
+                >
                   Keep up the excellent work on your interview preparation
                 </Typography>
               </Box>
@@ -211,61 +295,70 @@ const Dashboard: React.FC = () => {
         </Card>
 
         {/* Quick Actions */}
-        <Card>
+        <Card className="bg-white/80 backdrop-blur-sm shadow-lg rounded-2xl border border-white/20">
           <CardContent>
-            <Typography variant="h5" className="font-bold text-gray-800 mb-4">
+            <Typography variant="h5" className={dashboardQuickActionsTitle}>
               Quick Actions
             </Typography>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className={dashboardQuickActionsGrid}>
               <Card
-                className="bg-blue-50 hover:bg-blue-100 cursor-pointer transition-colors"
+                className={dashboardQuickActionCard}
                 onClick={() => navigate("/questions")}
               >
-                <CardContent className="text-center">
-                  <QuestionAnswerIcon className="text-3xl text-blue-600 mb-2" />
+                <CardContent className={dashboardQuickActionContent}>
+                  <QuestionAnswerIcon className={dashboardQuickActionIcon} />
                   <Typography
                     variant="h6"
-                    className="font-semibold text-blue-800"
+                    className={dashboardQuickActionTitle}
                   >
                     Practice Questions
                   </Typography>
-                  <Typography variant="body2" className="text-blue-600">
+                  <Typography
+                    variant="body2"
+                    className={dashboardQuickActionSubtext}
+                  >
                     Start practicing
                   </Typography>
                 </CardContent>
               </Card>
 
               <Card
-                className="bg-purple-50 hover:bg-purple-100 cursor-pointer transition-colors"
+                className={dashboardQuickActionCardPurple}
                 onClick={() => navigate("/question-sets")}
               >
-                <CardContent className="text-center">
-                  <AssessmentIcon className="text-3xl text-purple-600 mb-2" />
+                <CardContent className={dashboardQuickActionContent}>
+                  <AssessmentIcon className={dashboardQuickActionIconPurple} />
                   <Typography
                     variant="h6"
-                    className="font-semibold text-purple-800"
+                    className={dashboardQuickActionTitlePurple}
                   >
                     Question Sets
                   </Typography>
-                  <Typography variant="body2" className="text-purple-600">
+                  <Typography
+                    variant="body2"
+                    className={dashboardQuickActionSubtextPurple}
+                  >
                     Browse sets
                   </Typography>
                 </CardContent>
               </Card>
 
               <Card
-                className="bg-green-50 hover:bg-green-100 cursor-pointer transition-colors"
+                className={dashboardQuickActionCardGreen}
                 onClick={() => navigate("/questions")}
               >
-                <CardContent className="text-center">
-                  <TrendingUpIcon className="text-3xl text-green-600 mb-2" />
+                <CardContent className={dashboardQuickActionContent}>
+                  <TrendingUpIcon className={dashboardQuickActionIconGreen} />
                   <Typography
                     variant="h6"
-                    className="font-semibold text-green-800"
+                    className={dashboardQuickActionTitleGreen}
                   >
                     Improve Skills
                   </Typography>
-                  <Typography variant="body2" className="text-green-600">
+                  <Typography
+                    variant="body2"
+                    className={dashboardQuickActionSubtextGreen}
+                  >
                     Focus on weak areas
                   </Typography>
                 </CardContent>
