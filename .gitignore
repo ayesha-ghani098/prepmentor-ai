@@ -1,39 +1,33 @@
-# === Node.js / Frontend ===
-node_modules/
-dist/
-.env
+# === Node.js / React ===
+client/node_modules/
+client/build/
+client/.env
 
 # === Java / Spring Boot ===
-HELP.md
 .gradle/
 build/
-*.properties
-
-# Keep Gradle wrapper jar, but ignore other build dirs
 !gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
+*.log
 
-# === STS (Spring Tool Suite) ===
-.apt_generated/
-.classpath
-.factorypath
-.project
-.settings/
-.springBeans/
-.sts4-cache/
-bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
+# Include properties with env variables (don't ignore!)
+# Keep: src/main/resources/application.properties
 
-# === IntelliJ IDEA ===
+# === IDE Files ===
+.vscode/
 .idea/
 *.iws
 *.iml
 *.ipr
+.settings/
+bin/
 out/
-!**/src/main/**/out/
-!**/src/test/**/out/
+
+# === Spring Tool Suite ===
+.apt_generated/
+.classpath
+.factorypath
+.springBeans/
+.sts4-cache/
 
 # === NetBeans ===
 /nbproject/private/
@@ -41,6 +35,3 @@ out/
 /dist/
 /nbdist/
 /.nb-gradle/
-
-# === VS Code ===
-.vscode/
