@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto17
+    commands:
+      - echo Moving into backend folder
+      - cd backend
+      - chmod +x gradlew
+  build:
+    commands:
+      - echo Building backend app...
+      - cd backend
+      - ./gradlew clean build -x test
+
+artifacts:
+  files:
+    - backend/build/libs/*.jar
