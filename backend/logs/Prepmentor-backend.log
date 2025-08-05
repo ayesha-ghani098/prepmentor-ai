@@ -6479,3 +6479,12 @@ Caused by: org.springframework.util.PlaceholderResolutionException: Could not re
 	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146)
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509)
 	... 65 common frames omitted
+2025-08-05 16:33:35.498 INFO  o.s.b.StartupInfoLogger:53 - Starting BackendApplication using Java 17.0.9 with PID 25176 (C:\Users\WT\Desktop\prepmentor-ai\backend\build\classes\java\main started by WT in C:\Users\WT\Desktop\prepmentor-ai\backend)
+2025-08-05 16:33:35.505 INFO  o.s.b.SpringApplication:652 - No active profile set, falling back to 1 default profile: "default"
+2025-08-05 16:33:37.883 INFO  o.a.j.l.DirectJDKLog:168 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-08-05 16:33:43.155 INFO  o.a.j.l.DirectJDKLog:168 - Starting ProtocolHandler ["http-nio-8080"]
+2025-08-05 16:33:43.195 INFO  o.s.b.StartupInfoLogger:59 - Started BackendApplication in 8.377 seconds (process running for 9.053)
+2025-08-05 16:33:43.204 INFO  c.p.b.BackendApplication:20 - PrepMentor AI Backend started successfully
+2025-08-05 16:38:28.181 INFO  o.s.b.StartupInfoLogger:53 - Starting BackendApplicationTests using Java 17.0.9 with PID 25312 (started by WT in C:\Users\WT\Desktop\prepmentor-ai\backend)
+2025-08-05 16:38:28.184 INFO  o.s.b.SpringApplication:652 - No active profile set, falling back to 1 default profile: "default"
+2025-08-05 16:38:34.671 INFO  o.s.b.StartupInfoLogger:59 - Started BackendApplicationTests in 6.933 seconds (process running for 8.429)

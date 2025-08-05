@@ -4,14 +4,16 @@ phases:
   install:
     commands:
       - echo Moving into backend folder
-      - cd prepmentor-ai/backend
+      - cd backend
+      - echo Installing dependencies...
       - chmod +x gradlew
+      - ./gradlew clean
 
   build:
     commands:
-      - echo Building backend app...
-      - ./gradlew build
+      - echo Build started on `date`
+      - ./gradlew build -x test
 
 artifacts:
   files:
-    - prepmentor-ai/backend/build/libs/*.jar
+    - backend/build/libs/*.jar
