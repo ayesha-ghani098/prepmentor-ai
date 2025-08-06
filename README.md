@@ -2,7 +2,7 @@
 
 **SnapPrep | MockMate**
 
-PrepMentor AI is an AI-powered mock interview platform that helps users prepare for technical and behavioral interviews using text, audio, or video responses. It delivers instant AI feedback, tracks performance, and sends weekly reports — making interview prep smarter and more personalized.
+PrepMentor AI is an AI-powered mock interview platform that helps users prepare for technical and behavioral interviews using text. It delivers instant AI feedback, tracks performance, and sends weekly reports — making interview prep smarter and more personalized.
 
 ---
 
@@ -15,13 +15,13 @@ Coming soon...
 ## 🚀 Features
 
 - 🔐 JWT-based authentication (Spring Boot + React)
-- 🎙️ Answer interview questions via text/audio/video
+- 🎙️ Answer interview questions via text
 - 💬 AI-generated feedback using OpenAI API
 - 📊 Performance dashboard and analytics
-- ☁️ Media uploads to AWS S3
-- 📧 Weekly email reports via AWS SES
 - ⚙️ CI/CD pipeline using GitHub Actions + AWS CodePipeline
 - 📱 Mobile responsive layout
+
+- ☁️ Media uploads to AWS S3 [when audio & video'll be added]
 
 ---
 
@@ -35,7 +35,6 @@ Coming soon...
 | Database     | MySQL                            |
 | AI Feedback  | OpenAI API                       |
 | Media Upload | AWS S3                           |
-| Emails       | AWS SES                          |
 | CI/CD        | GitHub Actions, AWS CodePipeline |
 | Hosting      | AWS Elastic Beanstalk, S3, RDS   |
 
@@ -120,7 +119,7 @@ openai.api.key=sk-xxxxxx
 
 ### Question Answering
 
-- Answer with text/audio/video
+- Answer with text/audio/video [text supported initially]
 - Uploads go to AWS S3
 
 ### AI Feedback
@@ -131,7 +130,6 @@ openai.api.key=sk-xxxxxx
 ### Dashboard
 
 - Tracks performance, average score
-- Weekly summary via AWS SES
 
 ---
 
@@ -155,7 +153,7 @@ openai.api.key=sk-xxxxxx
 
 ## 👥 Contributors
 
-- [Your Name](https://github.com/yourusername)
+- [Ayesha Ghani](https://github.com/ayesha-ghani098)
 
 ---
 
