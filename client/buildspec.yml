@@ -5,15 +5,16 @@ phases:
     runtime-versions:
       nodejs: 18
     commands:
+      - cd client
       - echo Installing dependencies...
       - npm install
 
   build:
     commands:
-      - echo Building the Vite app...
+      - echo Building app...
       - npm run build
 
 artifacts:
   files:
     - "**/*"
-  base-directory: dist
+  base-directory: client/dist
