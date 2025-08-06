@@ -5,15 +5,15 @@ phases:
     runtime-versions:
       nodejs: 18
     commands:
-      - cd client
-      - npm install
+      - echo Installing dependencies...
+      - npm ci
+
   build:
     commands:
+      - echo Building the Vite app...
       - npm run build
-  post_build:
-    commands:
-      - aws s3 sync dist/ s3://prepmentor-frontend --delete
 
 artifacts:
   files:
-    - "**/*"
+    - '**/*'
+  base-directory: dist
