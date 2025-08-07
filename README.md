@@ -27,16 +27,15 @@ Coming soon...
 
 ## 🧱 Tech Stack
 
-| Layer        | Technology                       |
-| ------------ | -------------------------------- |
-| Frontend     | React, Tailwind CSS or MUI       |
-| Backend      | Spring Boot, Spring Security     |
-| Auth         | JWT                              |
-| Database     | MySQL                            |
-| AI Feedback  | OpenAI API                       |
-| Media Upload | AWS S3                           |
-| CI/CD        | GitHub Actions, AWS CodePipeline |
-| Hosting      | AWS Elastic Beanstalk, S3, RDS   |
+| Layer        | Technology                   |
+| ------------ | ---------------------------- |
+| Frontend     | React, Tailwind CSS or MUI   |
+| Backend      | Spring Boot, Spring Security |
+| Auth         | JWT                          |
+| Database     | MySQL                        |
+| AI Feedback  | OpenAI API                   |
+| Media Upload | AWS S3                       |
+| Hosting      | AWS CloudFront & Render      |
 
 ---
 
@@ -136,8 +135,7 @@ openai.api.key=sk-xxxxxx
 ## 🛠️ Deployment & CI/CD
 
 - Frontend: AWS S3 + CloudFront
-- Backend: AWS Elastic Beanstalk or ECS
-- CI/CD: GitHub Actions + AWS CodePipeline
+- Backend: Render
 
 ---
 
