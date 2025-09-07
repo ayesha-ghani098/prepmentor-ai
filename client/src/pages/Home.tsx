@@ -25,7 +25,7 @@ const Home: React.FC = () => {
   return (
     <div>
       <AnimatedWrapper>
-        <Container className="flex flex-col items-center text-center pt-20 pb-10">
+        <Container className="flex flex-col items-center text-center pt-12 pb-8 sm:pt-20 sm:pb-10 px-4">
           <Typography variant="h3" className={landingHeading}>
             PrepMentor AI
           </Typography>

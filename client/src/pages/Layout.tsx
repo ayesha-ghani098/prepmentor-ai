@@ -14,11 +14,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     !shouldHideNavbar && (token || location.pathname === "/");
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       {shouldShowNavbar && <Navbar />}
-      {children}
+      <main className="flex-1">{children}</main>
       {shouldShowNavbar && <Footer />}
-    </>
+    </div>
   );
 };
 

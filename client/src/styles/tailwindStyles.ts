@@ -13,22 +13,22 @@ export const errorText = "text-red-600 text-sm text-center mt-2";
 // ✅ New landing page classes only
 
 // Headings
-export const landingHeading = "text-white font-bold mb-4";
-export const landingSubHeading = "text-white/80 mb-6 text-center";
+export const landingHeading = "text-white font-extrabold mb-3 !text-3xl sm:!text-5xl";
+export const landingSubHeading = "text-white/80 mb-6 text-center !text-sm sm:!text-base";
 
 // Landing Page Button (rounded gradient)
 export const landingGradientButton = 
-  "bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-6 py-2 rounded-full font-semibold shadow-md hover:from-indigo-600 hover:to-purple-600 transition-all";
+  "w-full sm:w-auto bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-6 py-3 rounded-full font-semibold shadow-md hover:from-indigo-600 hover:to-purple-600 transition-all";
 
   export const landingFeaturesGrid = 
-  "p-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-20 place-items-stretch";
+  "px-4 py-8 sm:p-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 pb-16 sm:pb-20 place-items-stretch";
 
 export const featureCard = 
-  "flex flex-col items-center text-center p-6 rounded-2xl border border-white/30 backdrop-blur-md bg-white/10 transition-all duration-500 ease-in-out hover:scale-105 hover:shadow-2xl cursor-pointer w-300";
+  "w-full flex flex-col items-center text-center p-5 sm:p-6 rounded-2xl border border-white/30 backdrop-blur-md bg-white/10 transition-all duration-500 ease-in-out hover:scale-105 hover:shadow-2xl cursor-pointer";
 
-export const featureIcon = "text-4xl mb-4";
-export const featureTitle = "text-white font-semibold mb-2";
-export const featureDesc = "text-white/80";
+export const featureIcon = "text-3xl sm:text-4xl mb-3 sm:mb-4";
+export const featureTitle = "text-white font-semibold mb-1 sm:mb-2 text-base sm:text-lg";
+export const featureDesc = "text-white/80 text-sm sm:text-base";
 
 // Navbar
 export const landingNavbar = "bg-white/10 backdrop-blur-md rounded-b-xl shadow-none p-2";
