@@ -142,11 +142,20 @@ const Answer: React.FC = () => {
     }
   };
 
-  const handleReattempt = () => {
+  const handleReattempt = async () => {
+    if (!questionId) return;
     setAnswerResponse(null);
     setAnswerText("");
     setShowReattempt(true);
     setError(null);
+    setIsLoading(true);
+    try {
+      await fetchQuestionById(Number(questionId));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to load question");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const getScoreColor = (score: number) => {
